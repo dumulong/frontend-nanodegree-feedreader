@@ -2,6 +2,15 @@
 
 This project shows you a list of feeds from different sources.  You click on the hamburger icon to see the list of sources that you can choose from. Happy reading!
 
+## installation
+
+Clone the GitHub repository:
+
+```
+git clone https://github.com/dumulong/frontend-nanodegree-feedreader.git
+cd frontend-nanodegree-feedreader
+```
+
 ## How do I run this application?
 
 Just open the index.html file.
