@@ -58,7 +58,7 @@ $(function() {
          */
         it('start hidden', function() {
             var menu = $("body");
-            expect(menu.hasClass("menu-hidden")).toBe(true);
+            expect($("body").hasClass("menu-hidden")).toBe(true);
         });
 
          /* TODO: Write a test that ensures the menu changes
@@ -67,7 +67,11 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
         it('is toggled on click', function() {
-
+            var menuIcon = $('.menu-icon-link');
+            menuIcon.click();
+            expect($("body").hasClass("menu-hidden")).toBe(false);
+            menuIcon.click();
+            expect($("body").hasClass("menu-hidden")).toBe(true);
         });
 
     });
@@ -81,8 +85,18 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+        beforeEach(function(done){
+            loadFeed(1, done);
+        });
 
+        it('should have at least on element', function(done){
+            expect($('.feed a').length).not.toBe(0);
+            done();
+        });
 
+        afterEach(function(done){
+            loadFeed(0, done);
+        });
     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
@@ -92,7 +106,18 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        var oldList;
 
+        beforeEach(function(done){
+            oldList = $('.feed h2');
+            loadFeed(1, done);
+        });
+
+        it('should be different after loading new feed', function(done){
+            var newList = $('.feed h2');
+            expect(oldList.eq(0).html()).not.toBe(newList.eq(0).html());
+            done();
+        });
 
     });
 
